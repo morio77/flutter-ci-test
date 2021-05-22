@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ci_test/calc_model.dart';
 
+import 'package:flutter_driver/flutter_driver.dart';
+
 void main() {
   runApp(MyApp());
 }
