@@ -21,15 +21,15 @@ jobs:
     strategy:
       matrix:
         device:
-        - "iPhone 8 (13.1)"
-        - "iPhone 11 Pro Max (13.1)"
+        - "iPhone 8 (14.4)"
+        - "iPhone 11 Pro Max (14.4)"
     steps:
       - name: "List all simulators"
-        run: "xcrun xctrace -s"
+        run: "xcrun instruments -s"
       - name: "Start Simulator"
         run: |
           UDID=$(
-            xcrun xctrace -s |
+            xcrun instruments -s |
             awk \
               -F ' *[][]' \
               -v 'device=${{ matrix.device }}' \
