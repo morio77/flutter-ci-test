@@ -17,6 +17,7 @@ void main() {
       }
     });
 
+    /// スクリーンショットを取る関数
     Future<void> _takeScreenShot(String filename) async {
       await driver.waitUntilNoTransientCallbacks();
       final pixels = await driver.screenshot();
@@ -37,12 +38,12 @@ void main() {
       final health = await driver.checkHealth();
       print(health.status);
 
-      await driver.tap(find.byValueKey('toAppAbout'));
+      await driver.tap(find.byValueKey('toAppAbout')); // アプリについて画面に遷移する
       expect(await driver.getText(find.byValueKey('appVersion')), 'アプリバージョン：1.0.0');
 
       await _takeScreenShot('アプリについて画面');
 
-      await driver.tap(find.byTooltip('Back'));
+      await driver.tap(find.byTooltip('Back')); // 元の画面に戻る
     });
   });
 }

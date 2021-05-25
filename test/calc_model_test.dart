@@ -2,9 +2,7 @@ import 'package:flutter_ci_test/calc_model.dart';
 import 'package:test/test.dart';
 
 void main() {
-  test('.add() test', () {
-    final calc = Calculation();
-
+  test('Calculation.add() test', () {
     // 0+0は0なことを確認する
     expect(Calculation.add(0, 0), 0);
 
