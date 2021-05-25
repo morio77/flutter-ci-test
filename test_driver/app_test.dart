@@ -32,5 +32,17 @@ void main() {
 
       await _takeScreenShot('起動直後の画面');
     });
+
+    test('アプリについて画面へ遷移して戻ってくる', () async {
+      final health = await driver.checkHealth();
+      print(health.status);
+
+      await driver.tap(find.byValueKey('toAppAbout'));
+      expect(await driver.getText(find.byValueKey('appVersion')), 'アプリバージョン：1.0.0');
+
+      await _takeScreenShot('アプリについて画面');
+
+      await driver.tap(find.byTooltip('Back'));
+    });
   });
 }

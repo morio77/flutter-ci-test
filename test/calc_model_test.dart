@@ -2,13 +2,16 @@ import 'package:flutter_ci_test/calc_model.dart';
 import 'package:test/test.dart';
 
 void main() {
-  test('.double() double parameter number', () {
+  test('.add() test', () {
     final calc = Calculation();
 
-    // 0を2倍しても0なことを確認するテスト
-    expect(calc.double(0), 0);
+    // 0+0は0なことを確認する
+    expect(Calculation.add(0, 0), 0);
 
-    // 1を2倍すると2になることを確認するテスト
-    expect(calc.double(1), 2);
+    // 1+1は2なことを確認する
+    expect(Calculation.add(1, 1), 2);
+
+    // 負の数にも対応していることを確認する
+    expect(Calculation.add(-4, 2), -2);
   });
 }

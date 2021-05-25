@@ -15,16 +15,28 @@ void main() {
     // Build our app and trigger a frame.
     await tester.pumpWidget(MyApp());
 
-    // Verify that our counter starts at 0.
-    expect(find.text('1'), findsOneWidget);
-    expect(find.text('0'), findsNothing);
+    // 最初は、「計算結果：0」と表示されていることを確認する
+    expect(find.text('計算結果：0'), findsOneWidget);
 
-    // Tap the 'trending_up_outlined' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.trending_up_outlined));
+
+    // 計算結果が偶数の時は「偶数」、奇数の時は「奇数」と表示されていることを確認する
+    // (同時に各ボタンが動作することも確認する)
+    await tester.tap(find.byKey(Key('1')));
     await tester.pump();
+    expect(find.text('奇数'), findsOneWidget); // この時点で計算結果：1 なので奇数
 
-    // Verify that our counter has incremented.
-    expect(find.text('1'), findsNothing);
-    expect(find.text('2'), findsOneWidget);
+    await tester.tap(find.byKey(Key('2')));
+    await tester.pump();
+    expect(find.text('奇数'), findsOneWidget); // この時点で計算結果：3 なので奇数
+
+    await tester.tap(find.byKey(Key('3')));
+    await tester.pump();
+    expect(find.text('偶数'), findsOneWidget); // この時点で計算結果：6 なので偶数
+
+
+    // FloatingActionボタンを押すと、計算結果が、0になることを確認する
+    await tester.tap(find.byIcon(Icons.refresh));
+    await tester.pump();
+    expect(find.text('計算結果：0'), findsOneWidget);
   });
 }
