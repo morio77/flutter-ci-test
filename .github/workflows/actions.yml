@@ -29,3 +29,17 @@ jobs:
           channel: 'stable'
       - name: "Run Flutter Integration tests"
         run: "flutter drive --driver=test_driver/integration_test.dart --target=integration_test/app_test.dart"
+
+    integration_test_Android:
+      runs-on: macos-latest
+      steps:
+        - uses: actions/checkout@v2
+        - uses: subosito/flutter-action@v1
+          with:
+            flutter-version: '2.2.0'
+            channel: 'stable'
+        - name: boot Android Emulator And Run Flutter Integration tests
+          uses: reactivecircus/android-emulator-runner@v2
+          with:
+            api-level: 29
+            script: "flutter drive --driver=test_driver/integration_test.dart --target=integration_test/app_test.dart"
