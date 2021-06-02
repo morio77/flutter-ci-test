@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  test:
+  unit_and_widget_test:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
@@ -16,31 +16,16 @@ jobs:
       - run: flutter pub get
       - run: flutter test
   
-  drive_test:
+  integration_test_iOS:
     runs-on: macos-latest
-    strategy:
-      matrix:
-        device:
-        - "iPhone 8 (14.4)"
-        - "iPhone 11 Pro Max (14.4)"
     steps:
-      - name: "List all simulators"
-        run: "xcrun instruments -s"
-      - name: "Start Simulator"
-        run: |
-          UDID=$(
-            xcrun instruments -s |
-            awk \
-              -F ' *[][]' \
-              -v 'device=${{ matrix.device }}' \
-              '$1 == device { print $2 }'
-          )
-          xcrun simctl boot "${UDID:?No Simulator with this name found}"
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
+      - uses: futureware-tech/simulator-action@v1
+        with: 
+          model: 'iPhone 8'
       - uses: subosito/flutter-action@v1
         with:
           flutter-version: '2.2.0'
           channel: 'stable'
-      - name: "Run Flutter Driver tests"
-        run: "flutter drive --driver=test_driver/integration_test.dart --target=integration_test/app_test.dart
-"
+      - name: "Run Flutter Integration tests"
+        run: "flutter drive --driver=test_driver/integration_test.dart --target=integration_test/app_test.dart"
