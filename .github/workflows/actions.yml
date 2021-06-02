@@ -58,4 +58,4 @@ jobs:
       - name: boot chromedriver
         run: chromedriver --url-base=/wd/hub --port=4444 &
       - name: Run Flutter Integration tests
-        run: "flutter drive --driver=test_driver/integration_test.dart --target=integration_test/app_test.dart -d web-server --release --browser-name=chrome --web-port=4444"
+        run: "flutter drive --driver=test_driver/integration_test.dart --target=integration_test/app_test.dart -d web-server"
