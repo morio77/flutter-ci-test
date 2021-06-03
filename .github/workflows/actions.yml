@@ -61,7 +61,7 @@ jobs:
       # - name: boot chromedriver
       #   run: chromedriver --port=4444 &
       - name: set up
-        script:
+        run:
           - git clone https://github.com/flutter/web_installers.git
           - cd web_installers/packages/web_drivers/
           - pub get
