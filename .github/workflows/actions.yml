@@ -53,6 +53,8 @@ jobs:
           flutter-version: '2.2.0'
           channel: 'stable'
       - run: flutter config --enable-web
+      - uses: browser-actions/setup-chrome@latest
+      - run: chrome --version 88.0.4324
       - uses: nanasess/setup-chromedriver@master
         with:
           chromedriver-version: '88.0.4324.96'
