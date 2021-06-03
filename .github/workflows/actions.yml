@@ -52,6 +52,7 @@ jobs:
         with:
           flutter-version: '2.2.0'
           channel: 'stable'
+      - run: flutter config --enable-web
       - uses: nanasess/setup-chromedriver@master
         with:
           chromedriver-version: '88.0.4324.96'
@@ -59,4 +60,4 @@ jobs:
         run: chromedriver --url-base=/wd/hub --port=4444 &
       - run: sleep 10
       - name: Run Flutter Integration tests
-        run: "flutter drive --driver=test_driver/integration_test.dart --target=integration_test/app_test.dart -d web-server --profile --browser-name=chrome"
+        run: "flutter drive --driver=test_driver/integration_test.dart --target=integration_test/app_test.dart -d web-server --release --browser-name=chrome"
