@@ -53,13 +53,21 @@ jobs:
           flutter-version: '2.2.0'
           channel: 'stable'
       - run: flutter config --enable-web
-      - uses: browser-actions/setup-chrome@latest
-      - run: chromium --version
-      - uses: nanasess/setup-chromedriver@master
-        with:
-          chromedriver-version: '88.0.4324.96'
+      # - uses: browser-actions/setup-chrome@latest
+      # - run: chromium --version
+      # - uses: nanasess/setup-chromedriver@master
+      #   with:
+      #     chromedriver-version: '88.0.4324.96'
       # - name: boot chromedriver
       #   run: chromedriver --port=4444 &
+      script:
+        - git clone https://github.com/flutter/web_installers.git
+        - cd web_installers/packages/web_drivers/
+        - pub get
+        - dart lib/web_driver_installer.dart chromedriver --install-only
+        - chromedriver/chromedriver --port=4444 &
+        - sleep 1
+        - cd ../../../
       - run: sleep 10
       - name: Run Flutter Integration tests
-        run: "flutter drive --driver=test_driver/integration_test.dart --target=integration_test/app_test.dart -d web-server --debug --browser-name=chrome --web-port=4444"
+        run: "flutter drive --driver=test_driver/integration_test.dart --target=integration_test/app_test.dart -d web-server --profile --browser-name=chrome --web-port=4444"
