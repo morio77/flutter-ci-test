@@ -54,9 +54,9 @@ jobs:
           channel: 'stable'
       - run: flutter config --enable-web
       - uses: browser-actions/setup-chrome@latest
-      - run: chrome --version
         with:
           chrome-version: beta
+      - run: chromium --version
       - uses: nanasess/setup-chromedriver@master
         with:
           chromedriver-version: '91.0.4472.19'
