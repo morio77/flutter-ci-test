@@ -57,10 +57,10 @@ jobs:
           channel: 'stable'
       - run: flutter config --enable-web
       - name: boot chromedriver
-        if matrix.browser == 'chrome'
+        if: matrix.browser == 'chrome'
         run: chromedriver --port=4444 &
       - name: boot safaridriver
-        if matrix.browser == 'safari'
+        if: matrix.browser == 'safari'
         run: safaridriver --port=4444 &
       - run: sleep 5
       - name: Run Flutter Integration tests
