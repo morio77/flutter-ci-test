@@ -55,7 +55,7 @@ jobs:
       - run: flutter config --enable-web
       - uses: browser-actions/setup-chromium@latest
         with:
-        chromium-version: 827102
+          chromium-version: 827102
         
       - run: chrome --version
       # - uses: browser-actions/setup-chrome@latest
