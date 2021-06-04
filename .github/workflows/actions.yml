@@ -57,7 +57,7 @@ jobs:
         with:
           chromium-version: 827102
         
-      - run: chrome --version
+      - run: chromium --version
       # - uses: browser-actions/setup-chrome@latest
       # - run: chromium --version
       # - uses: nanasess/setup-chromedriver@master
