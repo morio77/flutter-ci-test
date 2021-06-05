@@ -62,6 +62,9 @@ jobs:
       - name: boot safaridriver
         if: matrix.browser == 'safari'
         run: safaridriver --port=4444 &
+      - name: boot edgedriver
+        if: matrix.browser == 'edge'
+        run: edgedriver --port=4444 &
       - run: sleep 5
       - name: Run Flutter Integration tests
         run: "flutter drive --driver=test_driver/integration_test.dart --target=integration_test/app_test.dart -d web-server --profile --browser-name=${{ matrix.browser }}"
