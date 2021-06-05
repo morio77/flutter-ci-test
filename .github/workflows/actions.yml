@@ -48,7 +48,7 @@ jobs:
     runs-on: macos-latest
     strategy:
       matrix:
-        browser: [chrome, safari, firefox]
+        browser: [chrome, safari]
     steps:
       - uses: actions/checkout@v2
       - uses: subosito/flutter-action@v1
@@ -81,6 +81,7 @@ jobs:
           flutter-version: '2.2.0'
           channel: 'stable'
       - run: flutter config --enable-web
+      - run: "npm install @microsoft/edge-selenium-tools selenium-webdriver"
       - name: boot msedgedriver
         run: Start-Process -FilePath msedgedriver -ArgumentList "--port=4444"
       - run: sleep 5
