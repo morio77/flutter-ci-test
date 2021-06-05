@@ -49,7 +49,7 @@ jobs:
     strategy:
       matrix:
         # browser: [chrome, safari, edge, firefox]
-        browser: [chrome, safari, firefox]
+        browser: [chrome, safari, firefox, edge]
     steps:
       - uses: actions/checkout@v2
       - uses: subosito/flutter-action@v1
