@@ -78,11 +78,11 @@ jobs:
       - uses: actions/checkout@v2
       - uses: subosito/flutter-action@v1
         with:
-          flutter-version: '2.2.0'
-          channel: 'stable'
+          # flutter-version: '2.2.0'
+          channel: 'master'
       - run: flutter config --enable-web
       # - name: boot msedgedriver
-      - run: msedgedriver --port=4444
+      - run: msedgedriver --port=4444 &
       # - run: sleep 5
       - name: Run Flutter Integration tests
         run: "flutter drive --driver=test_driver/integration_test.dart --target=integration_test/app_test.dart -d web-server --profile --browser-name=edge"
@@ -93,11 +93,11 @@ jobs:
       - uses: actions/checkout@v2
       - uses: subosito/flutter-action@v1
         with:
-          flutter-version: '2.2.0'
-          channel: 'stable'
+          # flutter-version: '2.2.0'
+          channel: 'master'
       - run: flutter config --enable-web
       - name: boot geckodriver
-        run: geckodriver --port=4444
+        run: geckodriver --port=4444 &
       - run: sleep 5
       - name: Run Flutter Integration tests
         run: "flutter drive --driver=test_driver/integration_test.dart --target=integration_test/app_test.dart -d web-server --profile --browser-name=firefox"
