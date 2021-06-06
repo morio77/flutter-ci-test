@@ -100,8 +100,8 @@ jobs:
           flutter-version: '2.2.0'
           channel: 'stable'
       - run: flutter config --enable-web
-      - run: flutter devices
       - run: "start microsoft-edge:"
+      - run: flutter devices
       - name: boot msedgedriver
         if: matrix.browser == 'edge'
         run: Start-Process -FilePath msedgedriver -ArgumentList "--port=4444"
