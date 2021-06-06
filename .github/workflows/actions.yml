@@ -103,7 +103,7 @@ jobs:
       - name: boot msedgedriver
         if: matrix.browser == 'edge'
         run: Start-Process -FilePath msedgedriver -ArgumentList "--port=4444"
-      - run: sleep 5
+      - run: sleep 120
       - run: Get-Process
       - name: Run Flutter Integration tests
         run: "flutter drive --driver=test_driver/integration_test.dart --target=integration_test/app_test.dart -d web-server --profile --browser-name=${{ matrix.browser }}"
